@@ -4,7 +4,7 @@
 
 class Camera
 {
-    double camDist = 5;
+    double camDist = 10;
 
     int camNz = 1;
 

@@ -100,6 +100,7 @@ Camera* c;
 void OpenGL::PreRender()
 {
     c = new Camera();
+    
 
     mouseMoveEvent().reaction(c, &Camera::MouseMovie);
     wheelEvent().reaction(c, &Camera::Zoom);
