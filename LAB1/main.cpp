@@ -15,7 +15,3 @@ int main(void)
     return 0;
 }
 
-//static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
-//{
-//    printf("%f %f\n", xpos, ypos);
-//}
