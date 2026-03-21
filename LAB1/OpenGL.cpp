@@ -105,9 +105,10 @@ void OpenGL::PreRender()
     mouseMoveEvent().reaction(c, &Camera::MouseMovie);
     wheelEvent().reaction(c, &Camera::Zoom);
     mouseButtonEvent().reaction(c, &Camera::MouseStartDrag);
-
+    
+   
     glClearColor(0.7, 0.7, 0.7, 0);
-
+    glEnable(GL_DEPTH_TEST);
 }
 
 
@@ -119,7 +120,7 @@ void OpenGL::Render()
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         c->SetUpCamera();
 
