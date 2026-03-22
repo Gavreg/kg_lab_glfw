@@ -72,7 +72,7 @@ Cmake обнаружит необходимую версию VS, а так же 
 
 ## Mac OS
 
-## Linux (Ununtu)
+## Linux (Ubuntu)
 
 Для Linux и MacOs создается makefile.
 
