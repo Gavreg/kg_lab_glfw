@@ -72,7 +72,7 @@ void OpenGL::initWindow()
     window_height = 720;
     window_width = 1280;
     
-    window = glfwCreateWindow(window_width, window_height, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(window_width, window_height, "Компьютерная графика", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
