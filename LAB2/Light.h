@@ -1,6 +1,6 @@
 #pragma once
 
-#include "OpenGl.h"
+#include "OpenGL.h"
 
 class Light
 {
