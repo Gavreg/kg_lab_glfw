@@ -81,7 +81,7 @@ Cmake обнаружит необходимую версию VS, а так же 
 Сначала необходимо установить пакеты OpenGL, GLFW и CMake и какой-нибудь компилятор (в примере gcc).
 
 ```
-brew install glfw freeglut cmake make
+brew install glfw freeglut cmake make gcc
 ```
 
 Далее в папке репозитория:
