@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include <string>
+#include <format>
 #include <iostream>
 #include <algorithm>
 
@@ -69,7 +70,7 @@ void InitRender()
 
     // Загружаем картинку
     // см. #include "stb_image.h"
-    unsigned char* data = stbi_load( (data_folder + std::string("texture.png")).c_str()   , &x, &y, &n, 4);
+    unsigned char* data = stbi_load( std::format("{}texture.png",data_folder).c_str(), &x, &y, &n, 4);
     if (!data) {
         // Обработка ошибки загрузки текстуры
         std::cerr << "Failed to load texture: " << data_folder + "texture.png" << std::endl;
