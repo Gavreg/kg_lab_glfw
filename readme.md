@@ -118,7 +118,7 @@ cmake -DCMAKE_BUILD_TYPE=Debug -B build
 
 ### Linux
 
-Анологично как для MacOS необходимо установить пакеты OpenGL, GLFW и CMake и какой-нибудь компилятор.
+Аналогично как для MacOS необходимо установить пакеты OpenGL, GLFW и CMake и какой-нибудь компилятор.
 
 Debian-подобные дистрибутивы
 ```
