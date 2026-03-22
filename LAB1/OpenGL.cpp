@@ -72,7 +72,7 @@ void OpenGL::initWindow()
     window_height = 720;
     window_width = 1280;
     
-    window = glfwCreateWindow(window_width, window_height, "Компьютерная графика", NULL, NULL);
+    window = glfwCreateWindow(window_width, window_height, "Компьютерная графика 1", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -88,6 +88,7 @@ void OpenGL::initWindow()
     glfwSetCursorPosCallback(window, cursor_position_callback);
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
+
     glfwSetKeyCallback(window, key_callback);
 
     /* Make the window's context current */
