@@ -137,6 +137,7 @@ void InitRender()
     std::cout << "  L - Enable/disable ligtning" << std::endl;
     std::cout << "  T - Enable/disable textures" << std::endl;
     std::cout << "  A - Enable/disable alpha blending" << std::endl;
+    std::cout << "  G / G+LMB - Move light source with cursor horizontal/vertical" << std::endl;
     std::cout << "  F - Move light source to camera's position" << std::endl;
     std::cout << "  F(hold) - Move light source with camera" << std::endl;
 
