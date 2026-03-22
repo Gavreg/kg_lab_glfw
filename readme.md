@@ -7,7 +7,7 @@ cmake -B build
 
 из необходимой папки. 
 
-## Windpws + Visual Studio
+## Windows + Visual Studio
 
 Для работы в Windows необходимо иметь Visual Studio с установленными компонентами для С++:
 
@@ -20,6 +20,10 @@ winget install cmake
 ```
 
 Для создания проекта, необимо перейти в папку нужной лабораторной работы и сконфигурировать проект командой:
+
+```
+cmake -B build
+```
 
 <details>
 
@@ -58,15 +62,17 @@ PS C:\...\LAB2_training> cmake -B build
 PS C:\...\LAB2_training> 
 
 ```
-
 </details>
 
 Cmake обнаружит необходимую версию VS, а так же компиляторы С и С++. После чего в папке build будет создано решение.
 
 В решении будет находится несколько проектов: проекты, необходимые для сборки библиотеки GLWF, и проект для лабораторной работы kg_lab. Его необходимо сделать основным:
 
-![image](images/windows_vs2.jpg)
+<img src="images/windows_vs2.jpg" height=400/>
 
+## Mac OS
+
+## Linux (Ununtu)
 
 Для Linux и MacOs создается makefile.
 
