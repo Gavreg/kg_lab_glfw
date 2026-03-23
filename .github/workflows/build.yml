@@ -20,12 +20,14 @@ jobs:
         cd "LAB1"
         cmake -B build
         cmake --build build
+
     - run: |
         echo "Building LAB2_training"
         cd "LAB2"
         cmake -B build
         cmake --build build
-        - run: |
+        
+    - run: |
         echo "Building LAB2"
         cd "LAB2"
         cmake -B build
