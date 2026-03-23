@@ -23,10 +23,10 @@ jobs:
 
     - run: |
         echo "Building LAB2_training"
-        cd "LAB2"
+        cd "LAB2_training"
         cmake -B build
         cmake --build build
-        
+
     - run: |
         echo "Building LAB2"
         cd "LAB2"
