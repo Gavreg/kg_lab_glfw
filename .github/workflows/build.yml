@@ -21,7 +21,7 @@ jobs:
         cmake -B build
         cmake --build build
 
-    - run: |
+    - run: | 
         echo "Building LAB2_training"
         cd "LAB2_training"
         cmake -B build
