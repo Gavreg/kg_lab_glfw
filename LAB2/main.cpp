@@ -26,8 +26,6 @@ int main(void)
        }
    }
 
-   специальная ошибкааа
-
     OpenGL gl;
     ogl_object = &gl;
     gl.initWindow();
