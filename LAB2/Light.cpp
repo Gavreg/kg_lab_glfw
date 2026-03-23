@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <tuple>
-#include "Vector3.h"
+#include <Vector3.h>
 
 extern OpenGL* ogl_object;
 
