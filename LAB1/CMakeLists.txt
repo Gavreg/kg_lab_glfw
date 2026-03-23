@@ -25,7 +25,7 @@ add_executable(kg_lab
 )
 
 target_link_libraries(kg_lab PRIVATE glfw OpenGL::GL ${OPENGL_glu_LIBRARY})
-
+target_include_directories(kg_lab PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 
