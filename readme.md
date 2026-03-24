@@ -120,23 +120,23 @@ VS определит, что активное решение было изме�
  ```bash
 @.../$ sudo apt update 
 
- .../$ sudo apt install -y gcc
+@.../$ sudo apt install -y gcc
  #или
 @.../$ sudo apt install -y clang
 
-@.../apt install -y make cmake
+@.../$ apt install -y make cmake
  ```
 
 Для работы с Open GL и сборки библиотеки glfw, которая используется для создание окна, необходимо установить дополинтельные зависимости
 
 ```bash
-sudo apt install -y libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev wayland-protocols libwayland-dev libwayland-bin libxkbcommon-dev libglu1-mesa-dev pkg-config
+@.../$ sudo apt install -y libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev wayland-protocols libwayland-dev libwayland-bin libxkbcommon-dev libglu1-mesa-dev pkg-config
 ```
 
 Далее переходим в папку с любой лабораторной работой и конфигурируем ее CMake`ом:
 
 ```bash
-.../LAB1$ cmake -B build
+@.../LAB1$ cmake -B build
 ```
 
 <details>
@@ -144,7 +144,7 @@ sudo apt install -y libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev
 <summary> Полный вывод CMake </summary> 
 
 ```bash
-@.../LAB1$$ cmake -B build
+@.../LAB1$ cmake -B build
 
 -- The C compiler identification is GNU 14.2.0
 -- The CXX compiler identification is GNU 14.2.0
@@ -193,12 +193,12 @@ sudo apt install -y libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev
 
 В папке build будет находится makefile с командами для сборки проекта. запустить его можно через CMake
 ```bash
-.../LAB1$ cmake --build build
+@.../LAB1$ cmake --build build
 ```
 или вручную:
 ```bash
 .../LAB1$ cd LAB1
-.../LAB1$ make
+@.../LAB1$ make
 ```
 
 <details> 
