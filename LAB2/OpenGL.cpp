@@ -80,7 +80,9 @@ void OpenGL::initWindow()
         throw (std::runtime_error("Error in GLWF window creation"));
     }
 
-    
+    //фикс размеров под ретины на маках
+    glfwWindowHint(GLFW_SCALE_FRAMEBUFFER, true);
+    glfwWindowHint(GLFW_SCALE_TO_MONITOR, true);
 
     glfwSetWindowUserPointer(m_window, this); //сохраняем связь текущено класса с glwf окном.
 
