@@ -70,50 +70,53 @@ void InitRender()
 
     // Загружаем картинку
     // см. #include "stb_image.h"
+
+        // x - ширина изображения
+        // y - высота изображения
+        // n - количество каналов
+        // 4 - нужное нам количество каналов
+        // Пиксели будут хранится в памяти [R-G-B-A]-[R-G-B-A]-[.....
+        //  по 4 байта на пиксель - по байту на канал
+        // Пустые каналы будут равны 255
     unsigned char* data = stbi_load( std::format("{}texture.png",data_folder).c_str(), &x, &y, &n, 4);
     if (!data) {
         // Обработка ошибки загрузки текстуры
         std::cerr << "Failed to load texture: " << data_folder + "texture.png" << std::endl;
-        return;
     }
-    // x - ширина изображения
-    // y - высота изображения
-    // n - количество каналов
-    // 4 - нужное нам количество каналов
-    // Пиксели будут хранится в памяти [R-G-B-A]-[R-G-B-A]-[.....
-    //  по 4 байта на пиксель - по байту на канал
-    // Пустые каналы будут равны 255
-
-    // Картинка хранится в памяти перевернутой
-    // так как ее начало в левом верхнем углу;
-    // по этому мы ее переворачиваем -
-    // меняем первую строку с последней,
-    // вторую с предпоследней, и.т.д.
-   
-    const size_t row_size = x * 4;
-    for (int i = 0; i < y / 2; ++i)
+    else
     {
-        unsigned char* row_i = data + i * row_size;
-        unsigned char* row_j = data + (y - 1 - i) * row_size;
-        std::swap_ranges(row_i, row_i + row_size, row_j);
+
+        // Картинка хранится в памяти перевернутой
+        // так как ее начало в левом верхнем углу;
+        // по этому мы ее переворачиваем -
+        // меняем первую строку с последней,
+        // вторую с предпоследней, и.т.д.
+
+        const size_t row_size = x * 4;
+        for (int i = 0; i < y / 2; ++i)
+        {
+            unsigned char* row_i = data + i * row_size;
+            unsigned char* row_j = data + (y - 1 - i) * row_size;
+            std::swap_ranges(row_i, row_i + row_size, row_j);
+        }
+
+        // Загрузка изображения в видеопамять
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+        // Выгрузка изображения из оперативной памяти
+        stbi_image_free(data);
+
+        // Настройка режима наложения текстур
+        glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        // GL_REPLACE -- полная замена политога текстурой
+        // Настройка тайлинга
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        // Настройка фильтрации
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     }
-
-    // Загрузка изображения в видеопамять
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-
-    // Выгрузка изображения из оперативной памяти
-    stbi_image_free(data);
-
-    // Настройка режима наложения текстур
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    // GL_REPLACE -- полная замена политога текстурой
-    // Настройка тайлинга
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-    // Настройка фильтрации
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     //======================================================
 
     //================НАСТРОЙКА КАМЕРЫ======================
