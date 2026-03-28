@@ -191,10 +191,10 @@ void OpenGL::drawAxisAndCell()
 
 void OpenGL::resize()
 {
-    //width = w;
-    //height = h;
-    
-    glViewport(0, 0, m_window_width, m_window_height);
+    int fbWidth, fbHeight;
+    glfwGetFramebufferSize(m_window, &fbWidth, &fbHeight);
+
+    glViewport(0, 0, fbWidth, fbHeight);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
