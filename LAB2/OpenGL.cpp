@@ -29,7 +29,7 @@ void OpenGL::cursor_position_callback(GLFWwindow* window, double xpos, double yp
         throw std::runtime_error("UserPointer ig glwfWindow updefined!");
 
     MouseEventArg a{ a.x = (int)(xpos / (ogl->m_window_width-1) * ogl->m_framebuffer_width), 
-        a.y = (int) (ypos / (ogl->m_window_height-1) * ogl->m_window_height )};
+        a.y = (int) (ypos / (ogl->m_window_height-1) * ogl->m_framebuffer_height )};
 
     ogl->m_mouseMoveEvent.exec(ogl, a);
 }
