@@ -35,6 +35,9 @@ class OpenGL
 	int m_window_width;
 	int m_window_height;
 
+	int m_framebuffer_width;
+	int m_framebuffer_height;
+
 	GLFWwindow* m_window;
 
 	double m_old_time = 0;
@@ -71,6 +74,9 @@ public:
 
 	int window_height(){ return m_window_height; }
 	int window_width() { return m_window_height; }
+
+	int fb_height() { return m_framebuffer_height; }
+	int fb_width() { return m_framebuffer_width; }
 
 	
 	bool isKeyPressed(int key)
