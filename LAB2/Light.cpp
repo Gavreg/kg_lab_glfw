@@ -72,7 +72,7 @@ void Light::MoveLight(OpenGL* sender, const MouseEventArg &arg)
     if (ogl_object->isKeyPressed(GLFW_KEY_G))
     {
         int _x = arg.x;
-        int _y = ogl_object->window_height() - arg.y;
+        int _y = ogl_object->fb_height() - arg.y;
 
         auto [oX, oY, oZ, dX, dY, dZ] = getLookRay(_x, _y);
 
