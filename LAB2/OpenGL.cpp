@@ -79,8 +79,6 @@ void OpenGL::initWindow()
     
     //фикс размеров под ретины на маках
     glfwWindowHint(GLFW_SCALE_FRAMEBUFFER, true);
-    //glfwWindowHint(GLFW_SCALE_TO_MONITOR, true);
-
 
     m_window = glfwCreateWindow(m_window_width, m_window_height, "Компьютерная графика 2", NULL, NULL);
     if (!m_window)
