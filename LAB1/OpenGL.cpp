@@ -14,8 +14,8 @@ void OpenGL::window_size_callback(GLFWwindow* window, int width, int height)
     if (!ogl)
         throw std::runtime_error("UserPointer ig glwfWindow updefined!");
 
-    ogl->window_width = width;
-    ogl->window_height = height;
+    ogl->m_window_width = width;
+    ogl->m_window_height = height;
     ogl->resize();
 
 }
@@ -28,7 +28,7 @@ void OpenGL::cursor_position_callback(GLFWwindow* window, double xpos, double yp
         throw std::runtime_error("UserPointer ig glwfWindow updefined!");
 
     MouseEventArg a{ a.x = (int)xpos, a.y = (int) ypos};
-    ogl->_mouseMoveEvent.exec(ogl, a);
+    ogl->m_mouseMoveEvent.exec(ogl, a);
 }
 
 void OpenGL::scroll_callback(GLFWwindow* window, double xpos, double ypos)
@@ -69,11 +69,11 @@ void OpenGL::initWindow()
     if (!glfwInit())
         throw (std::runtime_error("Error in GLWF initialuzation"));
 
-    window_height = 720;
-    window_width = 1280;
+    m_window_height = 720;
+    m_window_width = 1280;
     
-    window = glfwCreateWindow(window_width, window_height, "Компьютерная графика 1", NULL, NULL);
-    if (!window)
+    m_window = glfwCreateWindow(m_window_width, m_window_height, "Компьютерная графика 1", NULL, NULL);
+    if (!m_window)
     {
         glfwTerminate();
         throw (std::runtime_error("Error in GLWF window creation"));
@@ -81,18 +81,18 @@ void OpenGL::initWindow()
 
     
 
-    glfwSetWindowUserPointer(window, this); //сохраняем связь текущено класса с glwf окном.
+    glfwSetWindowUserPointer(m_window, this); //сохраняем связь текущено класса с glwf окном.
 
-    glfwSetWindowSizeCallback(window, window_size_callback);
+    glfwSetWindowSizeCallback(m_window, window_size_callback);
 
-    glfwSetCursorPosCallback(window, cursor_position_callback);
-    glfwSetScrollCallback(window, scroll_callback);
-    glfwSetMouseButtonCallback(window, mouse_button_callback);
+    glfwSetCursorPosCallback(m_window, cursor_position_callback);
+    glfwSetScrollCallback(m_window, scroll_callback);
+    glfwSetMouseButtonCallback(m_window, mouse_button_callback);
 
-    glfwSetKeyCallback(window, key_callback);
+    glfwSetKeyCallback(m_window, key_callback);
 
     /* Make the window's context current */
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(m_window);
     resize();
 }
 
@@ -118,7 +118,7 @@ void OpenGL::Render()
     PreRender();
     old_time = 0;
 
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(m_window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -174,7 +174,7 @@ void OpenGL::Render()
         old_time = time;
 
         /* Swap front and back buffers */
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(m_window);
 
         /* Poll for and process events */
         glfwPollEvents();
@@ -183,15 +183,14 @@ void OpenGL::Render()
 
 void OpenGL::resize()
 {
-    //width = w;
-    //height = h;
-    
-    glViewport(0, 0, window_width, window_height);
+    glfwGetFramebufferSize(m_window, &m_framebuffer_width, &m_framebuffer_height);
+
+    glViewport(0, 0, m_framebuffer_width, m_framebuffer_height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    gluPerspective(45.0, (GLdouble)window_width / (GLdouble)window_height, 0.2, 200.0);
+    gluPerspective(45.0, (GLdouble)m_window_width / (GLdouble)m_window_height, 0.2, 200.0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

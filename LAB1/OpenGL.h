@@ -32,15 +32,18 @@ class OpenGL
 {
 	bool render_flag;
 
-	int window_width;
-	int window_height;
+	int m_window_width;
+	int m_window_height;
 
-	GLFWwindow* window;
+	int m_framebuffer_width;
+	int m_framebuffer_height;
 
-	Event<OpenGL*, const MouseEventArg&> _mouseMoveEvent;
-	Event<OpenGL*, const MouseWheelEventArg&> _wheelEvent;
-	Event<OpenGL*, const MouseButtonEventArg&> _mouseButtonEvent;
-	Event<OpenGL*, const KeyEventArg&> _keyEvent;
+	GLFWwindow* m_window;
+
+	Event<OpenGL*, const MouseEventArg&> m_mouseMoveEvent;
+	Event<OpenGL*, const MouseWheelEventArg&> m_wheelEvent;
+	Event<OpenGL*, const MouseButtonEventArg&> m_mouseButtonEvent;
+	Event<OpenGL*, const KeyEventArg&> m_keyEvent;
 
 	static void window_size_callback(GLFWwindow* window, int width, int height);
 
@@ -59,10 +62,10 @@ class OpenGL
 public:
 
 	
-	auto& mouseMoveEvent() { return _mouseMoveEvent; }
-	auto& wheelEvent() { return _wheelEvent; }
-	auto& mouseButtonEvent (){ return _mouseButtonEvent; }
-	auto& keyEvent() { return _keyEvent; }
+	auto& mouseMoveEvent() { return m_mouseMoveEvent; }
+	auto& wheelEvent() { return m_wheelEvent; }
+	auto& mouseButtonEvent (){ return m_mouseButtonEvent; }
+	auto& keyEvent() { return m_keyEvent; }
 
 	void initWindow();
 
