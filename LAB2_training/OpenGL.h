@@ -30,15 +30,15 @@ struct KeyEventArg
 
 class OpenGL
 {
-	bool m_render_flag;
-
 	int m_window_width;
 	int m_window_height;
+
+	int m_framebuffer_width;
+	int m_framebuffer_height;
 
 	GLFWwindow* m_window;
 
 	double m_old_time = 0;
-
 
 	Event<OpenGL*, const MouseEventArg&> m_mouseMoveEvent;
 	Event<OpenGL*, const MouseWheelEventArg&> m_wheelEvent;
@@ -54,9 +54,6 @@ class OpenGL
 
 	void PreRender();
 	void resize();
-
-	
-	
 
 
 public:

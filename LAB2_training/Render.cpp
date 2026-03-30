@@ -36,7 +36,8 @@ void InitRender()
     //unsigned char∗ data = stbi_load (” texture .png”, &x, &y, &n, 4);
     //а вот так
     //unsigned char* data = stbi_load( std::format("{}texture.png", data_folder).c_str(), &x, &y, &n, 4);
-    //data_folder --- это путь до папки data, где лежит текстура, с которого должен анчинатся путь до любого файла в этой папке.
+    //data_folder --- это путь до папки data, где лежит текстура, с которого должен начинатся путь до любого файла в этой папке.
+    //std::format --- это функция из стандарта С++20, которая позволяет форматировать строки, как в python. В данном случае она просто склеивает строку data_folder и "texture.png", получая путь до текстуры.
 
 }
 

@@ -28,7 +28,9 @@ void OpenGL::cursor_position_callback(GLFWwindow* window, double xpos, double yp
     if (!ogl)
         throw std::runtime_error("UserPointer ig glwfWindow updefined!");
 
-    MouseEventArg a{ a.x = (int)xpos, a.y = (int) ypos};
+    MouseEventArg a{ a.x = (int)(xpos / (ogl->m_window_width-1) * ogl->m_framebuffer_width), 
+        a.y = (int) (ypos / (ogl->m_window_height-1) * ogl->m_framebuffer_height )};
+
     ogl->m_mouseMoveEvent.exec(ogl, a);
 }
 
@@ -72,6 +74,9 @@ void OpenGL::initWindow()
 
     m_window_height = 720;
     m_window_width = 1280;
+
+    //фикс размеров под ретины на маках
+    glfwWindowHint(GLFW_SCALE_FRAMEBUFFER, true);
     
     m_window = glfwCreateWindow(m_window_width, m_window_height, "Компьютерная графика 2", NULL, NULL);
     if (!m_window)
@@ -185,10 +190,9 @@ void OpenGL::drawAxisAndCell()
 
 void OpenGL::resize()
 {
-    //width = w;
-    //height = h;
-    
-    glViewport(0, 0, m_window_width, m_window_height);
+    glfwGetFramebufferSize(m_window, &m_framebuffer_width, &m_framebuffer_height);
+
+    glViewport(0, 0, m_framebuffer_width, m_framebuffer_height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
