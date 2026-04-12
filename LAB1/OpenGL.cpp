@@ -108,18 +108,20 @@ void OpenGL::PreRender()
     mouseButtonEvent().reaction(c, &Camera::MouseStartDrag);
     
    
-    glClearColor(0.7, 0.7, 0.7, 0);
+    glClearColor(0.7f, 0.7f, 0.7f, 0.0f);
     glEnable(GL_DEPTH_TEST);
 }
 
 
-void OpenGL::Render()
+void OpenGL::Render(unsigned  max_render_frames)
 {
     PreRender();
     old_time = 0;
 
     while (!glfwWindowShouldClose(m_window))
     {
+        
+        
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -130,6 +132,8 @@ void OpenGL::Render()
 
         glColor3d(0.2, 0.2, 0.2);
         glLineWidth(1);
+
+        
 
         glBegin(GL_LINES);
         for (int i = -10; i <= 10; ++i)
@@ -178,6 +182,22 @@ void OpenGL::Render()
 
         /* Poll for and process events */
         glfwPollEvents();
+
+        
+        if (glfwWindowShouldClose(m_window))
+        {
+            break; 
+        }
+        
+        // Ограничение по кадрам (если нужно)
+        if (max_render_frames > 0 && ++total_frames_count >= max_render_frames)
+        {
+            glfwSetWindowShouldClose(m_window, GLFW_TRUE);
+        }
+
+        RenderEventArg arg { .delta_time = time - old_time, .frame_number = total_frames_count };
+        m_postRenderEvent.exec(this,arg);
+
     }
 }
 

@@ -27,6 +27,12 @@ struct KeyEventArg
 	int action;
 };
 
+struct RenderEventArg
+{
+	double delta_time;
+	unsigned frame_number;
+};
+
 
 class OpenGL
 {
@@ -44,6 +50,7 @@ class OpenGL
 	Event<OpenGL*, const MouseWheelEventArg&> m_wheelEvent;
 	Event<OpenGL*, const MouseButtonEventArg&> m_mouseButtonEvent;
 	Event<OpenGL*, const KeyEventArg&> m_keyEvent;
+	Event<OpenGL*, const RenderEventArg&> m_postRenderEvent;
 
 	static void window_size_callback(GLFWwindow* window, int width, int height);
 
@@ -59,6 +66,8 @@ class OpenGL
 	
 	double old_time = 0;
 
+	unsigned  total_frames_count;
+
 public:
 
 	
@@ -66,13 +75,14 @@ public:
 	auto& wheelEvent() { return m_wheelEvent; }
 	auto& mouseButtonEvent (){ return m_mouseButtonEvent; }
 	auto& keyEvent() { return m_keyEvent; }
+	auto& postRenderEvent() {return m_postRenderEvent;}
 
 	void initWindow();
 
 
 	
 
-	void Render();
+	void Render(unsigned  max_render_frames = 0);
 
 	
 

@@ -3,10 +3,10 @@ name: Build
 on:
   push:
     branches:
-      - master
+      - '**'
   pull_request:
     branches:
-      - master
+      - '**'
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -20,6 +20,7 @@ jobs:
         cd "LAB1"
         cmake -B build
         cmake --build build
+        build/Debug/kg_lab --test
 
     - run: | 
         echo "Building LAB2_training"
