@@ -63,7 +63,7 @@ PS > winget install cmake
 ```powershell
 PS > cmake -B build
 ```
-
+*Можно быстро открыть PowerShell в нужной папке: Shift+ПКМ -> "Открыть в Терминале" / "Открыть окно PowerShell здесь" или же ввести ```powershell``` в адресной строке проводника.*
 
 <details>
 
