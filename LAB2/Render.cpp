@@ -78,28 +78,17 @@ void InitRender()
         // Пиксели будут хранится в памяти [R-G-B-A]-[R-G-B-A]-[.....
         //  по 4 байта на пиксель - по байту на канал
         // Пустые каналы будут равны 255
+    
+    // Картинка хранится в памяти перевернутой
+    // поэтому мы ее переворачиваем по Y при загрузке
+    stbi_set_flip_vertically_on_load(true);
+    
     unsigned char* data = stbi_load( std::format("{}texture.png",data_folder).c_str(), &x, &y, &n, 4);
     if (!data) {
         // Обработка ошибки загрузки текстуры
         std::cerr << "Failed to load texture: " << data_folder + "texture.png" << std::endl;
     }
-    else
-    {
-
-        // Картинка хранится в памяти перевернутой
-        // так как ее начало в левом верхнем углу;
-        // по этому мы ее переворачиваем -
-        // меняем первую строку с последней,
-        // вторую с предпоследней, и.т.д.
-
-        const size_t row_size = x * 4;
-        for (int i = 0; i < y / 2; ++i)
-        {
-            unsigned char* row_i = data + i * row_size;
-            unsigned char* row_j = data + (y - 1 - i) * row_size;
-            std::swap_ranges(row_i, row_i + row_size, row_j);
-        }
-
+    else {
         // Загрузка изображения в видеопамять
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, x, y, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
